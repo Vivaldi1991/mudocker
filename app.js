@@ -6,3 +6,5 @@ const template = `
         <div class="cock__right-egg"></div>
     </div>`;
 document.body.insertAdjacentHTML('afterbegin', template);
+
+console.log("inited");

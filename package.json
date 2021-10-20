@@ -1,0 +1,25 @@
+{
+  "name": "mudocker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "styles": "gulp buildStyles"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vivaldi1991/mudocker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Vivaldi1991/mudocker/issues"
+  },
+  "homepage": "https://github.com/Vivaldi1991/mudocker#readme",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-sass": "^5.0.0",
+    "sass": "^1.43.2"
+  }
+}

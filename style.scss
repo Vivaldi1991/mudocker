@@ -1,0 +1,28 @@
+body {
+    font-size: large;
+    background-color: rgb(71, 71, 71);
+    color: #fff;
+}
+
+.cock {
+    &__left-egg {
+        width: 50px;
+    }
+
+    &__mmm-leg {
+        width: 250px;
+        border-radius: 0 30% 30% 0 !important;
+        margin-left: 30px;
+    }
+
+    &__right-egg {
+        width: 50px;
+    }
+
+    & > div {
+        height: 50px;
+        background-color: rgb(167, 100, 0);
+        border: 2px solid #fff;
+        border-radius: 50%;
+    }
+}

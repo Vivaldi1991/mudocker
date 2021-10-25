@@ -1,6 +1,6 @@
 const express = require('express');
 const { connectDb } = require('./helpers/db');
-const { port, host} = require('./config');
+const { port, host, db} = require('./config');
 
 const app = express();
 
@@ -8,6 +8,7 @@ const startServer = () => {
     app.listen(port, () => {
         console.log(`Started api service at PORT:${port}`);
         console.log(`Started api service at HOST:${host}`);
+        console.log(`Database:${db}`);
     });
 } 
 
@@ -18,5 +19,5 @@ app.get('/test', (req, res) => {
 connectDb()
     .on('error', console.log)
     .on('disconnected', connectDb)
-    .once('once', startServer)
+    .once('open', startServer)
 

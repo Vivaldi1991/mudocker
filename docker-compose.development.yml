@@ -5,3 +5,10 @@ services:
     command: npm run dev
     volumes:
       - ./api/src:/usr/src/app/src
+
+  frontend:
+    command: npm run start
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./frontend/src:/usr/src/app/src

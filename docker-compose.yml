@@ -4,9 +4,7 @@ services:
     frontend:
         build: ./frontend
         container_name: mudocker-front
-        command: npm run start
-        ports:
-            - "3000:3000"
+        command: serve -s build -l 3000
         restart: unless-stopped
         stdin_open: true
         tty: true
@@ -51,6 +49,16 @@ services:
         container_name: mudocker-api-db
         volumes:
             - mongodb_api:/data/db
+    
+    nginx:
+        image: nginx:stable-alpine
+        container_name: mudocker-nginx
+        ports:
+            - "80:80"
+        volumes:
+            - ./nginx/nginx.conf.prod:/etc/nginx/conf.d/nginx.conf
+        depends_on:
+            - frontend
 
 volumes:
     mongodb_api:

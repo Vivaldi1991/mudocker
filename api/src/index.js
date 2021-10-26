@@ -15,19 +15,18 @@ const startServer = () => {
         console.log(`Started api service at PORT:${port}`);
         console.log(`Started api service at HOST:${host}`);
         console.log(`Database:${db}`);
-        const silence = new Post({ name: 'Silence' });
 
-        const silence = new Kitten({ name: "Silence" });
+        const silence = new Post({ name: 'Silence' });
         silence.save(function(err, result) {
-        if (err) return console.error(err);
-        console.log("result", result);
+            if (err) return console.error(err);
+            console.log("result", result);
         });
 
     });
 } 
 
 app.get('/test', (req, res) => {
-    res.send("Our api server is working correctly");
+    res.send("Our api server is real working correctly o");
 });
 
 connectDb()

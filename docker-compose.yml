@@ -19,8 +19,9 @@ services:
             - "3001:3001"
         environment:
             - PORT=3001
-            - HOST=http://realworld-docker.com
+            - HOST=http://mudocker.com
             - MONGO_URL=mongodb://api_db:27017/api
+            - AUTH_API_URL=http://auth:3002/api
         depends_on:
             - api_db
 
@@ -33,8 +34,10 @@ services:
             - "3002:3002"
         environment:
             - PORT=3002
-            - HOST=http://realworld-docker.com
+            - HOST=http://mudocker.com
             - MONGO_URL=mongodb://auth_db:27017/auth
+            - API_URL=http://api:3001/api
+
         depends_on:
             - auth_db
 
@@ -43,12 +46,16 @@ services:
         container_name: mudocker-auth-db
         volumes:
             - mongodb_auth:/data/db
+        logging:
+            driver: none
 
     api_db:
         image: mongo:latest
         container_name: mudocker-api-db
         volumes:
             - mongodb_api:/data/db
+        logging:
+            driver: none
     
     nginx:
         image: nginx:stable-alpine

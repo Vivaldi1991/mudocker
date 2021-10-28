@@ -10,6 +10,9 @@ services:
         tty: true
         volumes:
             - ./frontend/src:/usr/src/app/src
+        networks:
+            - mudocker-network
+
     api:
         build: ./api
         container_name: mudocker-api
@@ -24,6 +27,8 @@ services:
             - AUTH_API_URL=http://auth:3002/api
         depends_on:
             - api_db
+        networks:
+            - mudocker-network
 
     auth:
         build: ./auth
@@ -37,9 +42,10 @@ services:
             - HOST=http://mudocker.com
             - MONGO_URL=mongodb://auth_db:27017/auth
             - API_URL=http://api:3001/api
-
         depends_on:
             - auth_db
+        networks:
+            - mudocker-network
 
     auth_db:
         image: mongo:latest
@@ -48,6 +54,8 @@ services:
             - mongodb_auth:/data/db
         logging:
             driver: none
+        networks:
+            - mudocker-network
 
     api_db:
         image: mongo:latest
@@ -56,7 +64,9 @@ services:
             - mongodb_api:/data/db
         logging:
             driver: none
-    
+        networks:
+            - mudocker-network
+
     nginx:
         image: nginx:stable-alpine
         container_name: mudocker-nginx
@@ -66,7 +76,13 @@ services:
             - ./nginx/nginx.conf.prod:/etc/nginx/conf.d/nginx.conf
         depends_on:
             - frontend
+        networks:
+            - mudocker-network
 
 volumes:
     mongodb_api:
     mongodb_auth:
+
+networks:
+    mudocker-network:
+        driver: bridge

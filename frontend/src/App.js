@@ -1,10 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
+import axios from 'axios';
 
 function App() {
 
   const makeApiRequest = () => {
-    console.log('makeApiRequest');
+    axios.get('/api/testwithcurrentuser', resp => {
+      console.log(resp);
+    });
   }
 
   return (
@@ -23,7 +26,7 @@ function App() {
           Learn Reactusss
         </a>
       </header>
-      <button onCLick={makeApiRequest}>
+      <button onClick={makeApiRequest}>
         Make api request
       </button>
     </div>
